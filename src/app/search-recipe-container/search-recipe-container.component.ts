@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Recipe } from '../models/interface';
 import { RecipeService } from '../services/recipe.service';
@@ -20,9 +20,11 @@ export class SearchRecipeContainerComponent implements OnInit {
 
   recipe: Recipe;
   isSignedIn: boolean;
+  getUrl: string;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private recipeService: RecipeService,
     private recipeListService: RecipeListService,
     private recipeShopListService: RecipeShopListService,
@@ -36,7 +38,8 @@ export class SearchRecipeContainerComponent implements OnInit {
       this.isSignedIn = value;
     })
     const id = +this.route.snapshot.params.id;
-    this.showRecipe(id)
+    this.showRecipe(id);
+    this.getUrl = this.router.url;
   }
 
   goBack(): void {

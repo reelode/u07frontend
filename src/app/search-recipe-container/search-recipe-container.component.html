@@ -18,7 +18,7 @@
         <!-- This is localhost, so I added only share from source url, otherwise I cant use: {{currentRoute}} -->
         <share-buttons [theme]="'material-dark'"
             [include]="['facebook','twitter','linkedin','pinterest','reddit','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','copy']"
-            [show]="9" [size]="1" [url]="recipe?.sourceUrl" [image]="recipe?.image" [autoSetMeta]="false">
+            [show]="9" [size]="1" [url]="getUrl" [image]="recipe?.image" [autoSetMeta]="false">
         </share-buttons>
         <img class="d-block mx-auto mb-4" [src]="recipe?.image">
         <h1 class="fw-light">{{ recipe?.title }}</h1>
