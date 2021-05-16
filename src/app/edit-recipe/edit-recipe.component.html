@@ -1,0 +1,11 @@
+<div class="auth-wrapper">
+    <form class="form-signin" [formGroup]="editRecipeForm" (ngSubmit)="updateRecipeData()">
+        <h3 class="h3 mb-3 font-weight-normal text-center">Edit Recipe</h3>
+
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" value="{{ recipe?.name }}" class="form-control" formControlName="name">
+        </div>
+        <button type="submit" class="btn btn-block btn-primary">Save Recipe</button>
+    </form>
+</div>

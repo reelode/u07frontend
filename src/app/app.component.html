@@ -1,0 +1,44 @@
+<!-- Image and text -->
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a routerLink="/" class="navbar-brand d-flex align-items-center">
+        <strong>Recipes 4 life</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" routerLink="/recipelist" *ngIf="isSignedIn">Recipe List<span class="badge bg-secondary">{{
+              recipeList?.length
+              }}</span></a>
+          <a class="nav-link" routerLink="/recipeshoplist" *ngIf="isSignedIn">Your Shopping List<span
+              class="badge bg-secondary">{{
+              recipeShopList?.length
+              }}</span></a>
+          <a class="nav-link" routerLink="/profile" *ngIf="isSignedIn">User Profile</a>
+          <a class="nav-link" *ngIf="!isSignedIn" routerLink="/login">Log in</a>
+          <a class="nav-link" *ngIf="!isSignedIn" routerLink="/register">Register</a>
+          <button class="btn btn-outline-primary" (click)="signOut()" *ngIf="isSignedIn">Log out</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+
+  <router-outlet></router-outlet>
+
+</main>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      U07 Recipes
+    </p>
+    <p class="mb-1">© Simon Lindelöf 2021</p>
+  </div>
+</footer>

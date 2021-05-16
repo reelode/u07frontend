@@ -1,0 +1,24 @@
+.btn-outline-secondary {
+    display:none;
+}
+h5 {
+    font-size: 1.25rem;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    list-style: none;
+    padding: .75rem 1.25rem;
+    background-color: #f8f9fa!important;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.list-group {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    border-radius: .25rem;
+}
+.card-img-top {
+    width:50%;
+}

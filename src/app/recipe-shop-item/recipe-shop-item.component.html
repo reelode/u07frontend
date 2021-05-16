@@ -1,0 +1,20 @@
+<div class="card shadow-sm" id="{{ recipeData?.id }}">
+    <img [src]="recipeData?.image" class="bd-placeholder-img card-img-top" width="100%" height="225">
+    <div class="card-body">
+        <h5 class="card-title">{{ recipeData?.title
+            }}</h5>
+        <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm bg-light"
+                *ngFor="let item of recipeData?.extendedIngredients">{{ item?.original }}
+            </li>
+        </ul>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+                <a (click)="removeRecipe(recipeItem)" class="btn btn-sm btn-outline-secondary">Delete</a>
+                <button styleSheetFile="assets/css/print.css" printTitle="Ingredients to shop"
+                    printSectionId="{{ recipeData?.id }}" class="btn btn-sm btn-outline-secondary" ngxPrint>Print
+                    this</button>
+            </div>
+        </div>
+    </div>
+</div>

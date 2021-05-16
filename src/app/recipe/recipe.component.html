@@ -1,0 +1,16 @@
+<div class="card shadow-sm">
+    <img [src]="recipeData?.image" class="bd-placeholder-img card-img-top" width="100%" height="225">
+    <div class="card-body">
+        <h5 class="card-title">{{ recipeItem?.name
+            }}</h5>
+        <p class="card-text" [innerHTML]="recipeData?.summary"></p>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+                <a routerLink="/recipe/{{recipeData?.id}}" class="btn btn-sm btn-outline-secondary">View</a>
+                <a (click)="removeRecipe(recipeItem)" class="btn btn-sm btn-outline-secondary">Delete</a>
+                <a routerLink="{{recipeItem?.id}}" class="btn btn-sm btn-outline-secondary">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>

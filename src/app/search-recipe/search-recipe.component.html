@@ -1,0 +1,191 @@
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Search for a Recipe...</h1>
+            <p class="lead text-muted">Search for your recipes by typing what you looking for below, you can also use
+                the checkboxes to filter your results.</p>
+            <form #searchForm="ngForm">
+                <div class="form-floating mb-3">
+                    <input #search type="text" class="form-control" ngModel name="query"
+                        placeholder="Search for a Recipe..." (keyup.enter)="handleSearch(searchForm)">
+                    <label>Enter search value here, then press enter...</label>
+                </div>
+                <div ngModelGroup="types">
+                    <div class="pt-2" style="text-align:left;">
+                        <p>Type of dish:</p>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="main+course"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Main Course</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="side+dish"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Side Dish</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="dessert"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Dessert</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="appetizer"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Appetizer</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="salad"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Salad</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="breakfast"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Breakfast</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="soup"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Soup</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="beverage"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Beverage</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="sause"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Sauce</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="fingerfood"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Fingerfood</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="snack"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Snack</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="drink"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Drink</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div ngModelGroup="intolerances">
+                    <div class="pt-3" style="text-align:left;">
+                        <p>Type of intolerances:</p>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="gluten+free"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Gluten Free</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="ketogenic"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Ketogenic</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="vegetarian"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Vegetarian</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="vegan"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Vegan</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" ngModel name="paleo"
+                                (change)="handleSearch(searchForm)">
+                            <label class="form-check-label">Paleo</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="row">
+    <div class="col-md-8">
+        <h3 class="fw-light">Results</h3>
+        <div class="bg-light border rounded-3 py-5">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="col" *ngFor="let recipe of recipes$ | async">
+                        <div class="card shadow-sm">
+                            <img [src]="recipe.image" class="bd-placeholder-img card-img-top" width="100%" height="225">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ recipe.title
+                                    }}</h5>
+                                <p class="card-text">{{ recipe.dishTypes }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a routerLink="/recipe/{{recipe?.id}}"
+                                            class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a (click)="addRecipeToList(recipe)" *ngIf="isSignedIn"
+                                            class="btn btn-sm btn-outline-secondary">Add to
+                                            list</a>
+                                        <a routerLink="/register" *ngIf="!isSignedIn"
+                                            class="btn btn-sm btn-outline-secondary">Register to add to list</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h3 class="fw-light">Get Random Recipes <button (click)="randomRecipes()" class="btn btn-primary">Click
+                here</button></h3>
+        <div class="bg-light border rounded-3 py-5">
+            <div class="container">
+                <div class="row row-cols-1 g-2">
+                    <div class="col" *ngFor="let recipe of recipesRandom?.recipes">
+                        <div class="card shadow-sm">
+                            <img [src]="recipe.image" class="bd-placeholder-img card-img-top" width="100%" height="225">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ recipe.title
+                                    }}</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a routerLink="/recipe/{{recipe?.id}}"
+                                            class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a (click)="addRecipeToList(recipe)" *ngIf="isSignedIn"
+                                            class="btn btn-sm btn-outline-secondary">Add to
+                                            list</a>
+                                        <a routerLink="/register" *ngIf="!isSignedIn"
+                                            class="btn btn-sm btn-outline-secondary">Register to add to list</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
