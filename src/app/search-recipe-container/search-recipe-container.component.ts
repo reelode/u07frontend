@@ -20,11 +20,11 @@ export class SearchRecipeContainerComponent implements OnInit {
 
   recipe: Recipe;
   isSignedIn: boolean;
-  getUrl: string;
+  // getUrl: string;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    // private router: Router,
     private recipeService: RecipeService,
     private recipeListService: RecipeListService,
     private recipeShopListService: RecipeShopListService,
@@ -39,7 +39,7 @@ export class SearchRecipeContainerComponent implements OnInit {
     })
     const id = +this.route.snapshot.params.id;
     this.showRecipe(id);
-    this.getUrl = this.router.url;
+    //this.getUrl = this.router.url;
   }
 
   goBack(): void {
