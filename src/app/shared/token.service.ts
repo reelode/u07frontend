@@ -7,8 +7,8 @@ import { Injectable } from '@angular/core';
 export class TokenService {
 
   private issuer = {
-    login: 'https://u08backendreelode.herokuapp.com/api/auth/login',
-    register: 'https://u08backendreelode.herokuapp.com/api/auth/register'
+    login: 'http://u08backendreelode.herokuapp.com/api/auth/login',
+    register: 'http://u08backendreelode.herokuapp.com/api/auth/register'
   }
 
   constructor() { }
@@ -26,6 +26,7 @@ export class TokenService {
     const token = this.getToken();
 
     if (token) {
+
       const payload = this.payload(token);
       if (payload) {
         return Object.values(this.issuer).indexOf(payload.iss) > -1 ? true : false;

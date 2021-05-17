@@ -4,11 +4,16 @@
             Back</button>
     </div>
     <div class="p-2">
-        <button (click)="addRecipeToList(recipe)" *ngIf="isSignedIn" class="btn btn-primary btn-lg px-4 me-sm-3">Add to
+        <button (click)="addRecipeToList(recipe)" *ngIf="isSignedIn && !addedFav"
+            class="btn btn-primary btn-lg px-4 me-sm-3">Add to
             your
             list</button>
-        <button (click)="addRecipeToShoppingList(recipe)" *ngIf="isSignedIn"
+        <button (click)="addRecipeToList(recipe)" *ngIf="isSignedIn && addedFav"
+            class="btn btn-primary btn-lg px-4 me-sm-3" disabled>in list</button>
+        <button (click)="addRecipeToShoppingList(recipe)" *ngIf="isSignedIn && !addedShop"
             class="btn btn-primary btn-lg px-4 me-sm-3">Add Ingredients to shopping list</button>
+        <button (click)="addRecipeToShoppingList(recipe)" *ngIf="isSignedIn && addedShop"
+            class="btn btn-primary btn-lg px-4 me-sm-3" disabled>in list</button>
         <button routerLink="/register" *ngIf="!isSignedIn" class="btn btn-primary btn-lg px-4 me-sm-3">Register to add
             to list</button>
     </div>

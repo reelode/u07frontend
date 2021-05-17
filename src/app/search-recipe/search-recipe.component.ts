@@ -18,6 +18,7 @@ export class SearchRecipeComponent implements OnInit {
   recipesPaginate: any;
   recipesRandom: any;
   isSignedIn: boolean;
+  addedFav: boolean;
 
   private searchTerms$ = new Subject<string>();
 
@@ -61,8 +62,15 @@ export class SearchRecipeComponent implements OnInit {
 
   addRecipeToList(recipe): void {
     recipe.count += 1;
-    this.recipeListService.addRecipe(recipe).subscribe((data) => { recipe = data });
-    this.nav.ngOnInit();
+    this.recipeListService.addRecipe(recipe).subscribe({
+      next: response => {
+        recipe = response;
+        this.nav.ngOnInit();
+      },
+      error: error => {
+        this.addedFav = !this.addedFav
+      }
+    });
   }
 
   randomRecipes() {

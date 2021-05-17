@@ -20,6 +20,8 @@ export class SearchRecipeContainerComponent implements OnInit {
 
   recipe: Recipe;
   isSignedIn: boolean;
+  addedFav: boolean;
+  addedShop: boolean;
   // getUrl: string;
 
   constructor(
@@ -47,21 +49,35 @@ export class SearchRecipeContainerComponent implements OnInit {
   }
 
   showRecipe(id) {
-    this.recipeService.getRecipe(id).subscribe((results) => { this.recipe = results })
+    this.recipeService.getRecipe(id).subscribe((response) => {
+      this.recipe = response
+    })
   }
 
   addRecipeToList(recipe) {
     recipe.count += 1;
-    this.recipeListService.addRecipe(recipe).subscribe((data) => { recipe = data });
-    this.nav.ngOnInit();
+    this.recipeListService.addRecipe(recipe).subscribe({
+      next: response => {
+        recipe = response;
+        this.nav.ngOnInit();
+      },
+      error: error => {
+        this.addedFav = !this.addedFav
+      }
+    });
   }
 
   addRecipeToShoppingList(recipe) {
     recipe.count += 1;
-    this.recipeShopListService.addRecipeToShopList(recipe).subscribe((data) => { recipe = data });
-    this.nav.ngOnInit();
+    this.recipeShopListService.addRecipeToShopList(recipe).subscribe({
+      next: response => {
+        recipe = response;
+        this.nav.ngOnInit();
+      },
+      error: error => {
+        this.addedShop = !this.addedShop
+      }
+    });
   }
 
 }
-
-
