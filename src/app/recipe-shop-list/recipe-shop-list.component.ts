@@ -11,21 +11,28 @@ import { AppComponent } from '../app.component';
 export class RecipeShopListComponent implements OnInit {
 
   recipeShopList: any;
+  loader: boolean;
 
   constructor(private recipeShopListService: RecipeShopListService, private location: Location, private nav: AppComponent) { }
 
   ngOnInit() {
+    this.loader = true;
     this.recipeShopListService.getShopRecipeList().subscribe((data: any) => {
       this.recipeShopList = data;
+      this.loader = false;
     });
-
   }
   removeRecipe(recipe) {
-    this.recipeShopListService.removeRecipe(recipe).subscribe((data: any) => {
-      recipe = data;
-    })
-    this.ngOnInit();
-    this.nav.ngOnInit();
+    this.recipeShopListService.removeRecipe(recipe).subscribe({
+      next: response => {
+        recipe = response;
+        this.ngOnInit();
+        this.nav.ngOnInit();
+      },
+      error: error => {
+        console.log(error)
+      }
+    });
   }
 
   goBack(): void {

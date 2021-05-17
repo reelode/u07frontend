@@ -13,21 +13,29 @@ import { AppComponent } from '../app.component';
 export class RecipeListComponent implements OnInit {
 
   recipeList: any;
+  loader: boolean;
 
   constructor(private recipeListService: RecipeListService, private location: Location, private nav: AppComponent) { }
 
   ngOnInit() {
+    this.loader = true;
     this.recipeListService.getRecipeList().subscribe((data: any) => {
       this.recipeList = data;
+      this.loader = false;
     });
   }
 
   removeRecipe(recipe) {
-    this.recipeListService.removeRecipe(recipe).subscribe((data: any) => {
-      recipe = data;
-    })
-    this.ngOnInit();
-    this.nav.ngOnInit();
+    this.recipeListService.removeRecipe(recipe).subscribe({
+      next: response => {
+        recipe = response;
+        this.ngOnInit();
+        this.nav.ngOnInit();
+      },
+      error: error => {
+        console.log(error)
+      }
+    });
   }
 
   goBack(): void {

@@ -23,6 +23,7 @@ export class SearchRecipeContainerComponent implements OnInit {
   addedFav: boolean;
   addedShop: boolean;
   getUrl: string;
+  loader: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,6 +43,7 @@ export class SearchRecipeContainerComponent implements OnInit {
     const id = +this.route.snapshot.params.id;
     this.showRecipe(id);
     this.getUrl = this.router.url;
+    this.loader = true;
   }
 
   goBack(): void {
@@ -50,6 +52,7 @@ export class SearchRecipeContainerComponent implements OnInit {
 
   showRecipe(id) {
     this.recipeService.getRecipe(id).subscribe((response) => {
+      this.loader = false;
       this.recipe = response
     })
   }

@@ -1,25 +1,32 @@
-<div class="d-flex justify-content-between bd-highlight mb-3">
-    <div class="p-2">
-        <button (click)="goBack()" class="btn btn-outline-secondary btn-lg px-4">Go
-            Back</button>
+<div id="overlay" style="display:none;" class="d-flex justify-content-center" *ngIf="loader">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
 </div>
-<section class="py-5 text-center container">
-    <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Your Recipe List</h1>
-            <p class="lead text-muted">Here you find all your recipes that you have saved.</p>
-            <p *ngIf="!recipeList?.length" class="lead text-danger">Your list is <strong>empty</strong></p>
+<div *ngIf="!loader">
+    <div class="d-flex justify-content-between bd-highlight mb-3">
+        <div class="p-2">
+            <button (click)="goBack()" class="btn btn-outline-secondary btn-lg px-4">Go
+                Back</button>
         </div>
     </div>
-</section>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Your Recipe List</h1>
+                <p class="lead text-muted">Here you find all your recipes that you have saved.</p>
+                <p *ngIf="!recipeList?.length" class="lead text-danger">Your list is <strong>empty</strong></p>
+            </div>
+        </div>
+    </section>
 
-<div class="row" *ngIf="recipeList?.length">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col" *ngFor="let item of recipeList" id="print-section">
-                <app-recipe [recipeItem]="item" (remove)="removeRecipe($event)">
-                </app-recipe>
+    <div class="row" *ngIf="recipeList?.length">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col" *ngFor="let item of recipeList" id="print-section">
+                    <app-recipe [recipeItem]="item" (remove)="removeRecipe($event)">
+                    </app-recipe>
+                </div>
             </div>
         </div>
     </div>

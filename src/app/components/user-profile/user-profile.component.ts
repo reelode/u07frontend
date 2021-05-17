@@ -15,17 +15,19 @@ export class User {
 
 export class UserProfileComponent implements OnInit {
   UserProfile: User;
+  loader: boolean;
 
   constructor(
     public authService: AuthService
   ) {
     this.authService.profileUser().subscribe((data: any) => {
+      this.loader = false;
       this.UserProfile = data;
     })
   }
 
   ngOnInit() {
-
+    this.loader = true;
   }
 
 }
